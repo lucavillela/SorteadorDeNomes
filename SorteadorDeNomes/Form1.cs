@@ -33,12 +33,13 @@ namespace SorteadorDeNomes
         
         private void button2_Click(object sender, EventArgs e)
         {
-            ImportaExcel();
-            if (dataset != null && dataset.Tables.Count < 2)
-            {
-                dataset.Tables.Add(pessoaTable);
-            }
-            
+            login login = new login();
+            login.Show();
+            //ImportaExcel();
+            //if (dataset != null && dataset.Tables.Count < 2)
+            //{
+            //    dataset.Tables.Add(pessoaTable);
+            //}
         }
 
         private void ImportaExcel()
