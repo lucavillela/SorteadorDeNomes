@@ -147,11 +147,11 @@
             // ExibeOperadores
             // 
             this.ExibeOperadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ExibeOperadores.Location = new System.Drawing.Point(35, 249);
+            this.ExibeOperadores.Location = new System.Drawing.Point(35, 272);
             this.ExibeOperadores.Name = "ExibeOperadores";
             this.ExibeOperadores.RowHeadersWidth = 51;
             this.ExibeOperadores.RowTemplate.Height = 24;
-            this.ExibeOperadores.Size = new System.Drawing.Size(609, 203);
+            this.ExibeOperadores.Size = new System.Drawing.Size(609, 534);
             this.ExibeOperadores.TabIndex = 21;
             // 
             // PainelAdmin
@@ -170,7 +170,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "PainelAdmin";
-            this.Size = new System.Drawing.Size(682, 473);
+            this.Size = new System.Drawing.Size(682, 853);
             this.Load += new System.EventHandler(this.PainelAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ExibeOperadores)).EndInit();
             this.ResumeLayout(false);

@@ -13,29 +13,27 @@ namespace SorteadorDeNomes
 {
     public partial class main : Form
     {
-        private string userType;
+         private string userID, userType;
 
-        public main(string userType)
+        public main(string userType, string userID)
         {
             InitializeComponent();
             this.userType = userType;
+            this.userID = userID;
 
             if (userType == "admin")
             {
                 AdminButton.Visible = true;
+                HistButton.Visible = true;
             }
             else if (userType == "op")
             {
                 AdminButton.Visible = false;
+                HistButton.Visible = false;
             }
 
-            CadastroPessoas cadastroPessoas = new CadastroPessoas();
-            addUserControl(cadastroPessoas);
-        }
-
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
+            Sorteio sorteio = new Sorteio(userID);
+            addUserControl(sorteio);
         }
 
         private void addUserControl(UserControl userControl)
@@ -54,19 +52,25 @@ namespace SorteadorDeNomes
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Sorteio sorteio = new Sorteio();
+            Sorteio sorteio = new Sorteio(userID);
             addUserControl(sorteio);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void AdminButton_Click(object sender, EventArgs e)
         {
             PainelAdmin painelAdmin = new PainelAdmin();
             addUserControl(painelAdmin);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void HistButton_Click(object sender, EventArgs e)
+        {
+            Historico historico = new Historico();
+            addUserControl(historico);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace SorteadorDeNomes.Tabs
 {
     public partial class Sorteio : UserControl
     {
+        private string userID;
         List<Pessoa> pessoasASortear = new List<Pessoa>();
         List<Pessoa> pessoasSorteadas = new List<Pessoa>();
         List<Pessoa> mulheres = new List<Pessoa>();
@@ -20,59 +21,33 @@ namespace SorteadorDeNomes.Tabs
         DataTable dt = new DataTable();
         DataTable sorteadosTable = new DataTable("Sorteados");
         string connection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lucat\source\repos\SorteadorDeNomes\SorteadorDeNomes\Database.mdf;Integrated Security = True";
-        public Sorteio()
+        public Sorteio(string userID)
         {
             InitializeComponent();
+            this.userID = userID;
             sorteadosTable.Columns.Add("Nome", typeof(string));
             sorteadosTable.Columns.Add("Sexo", typeof(string));
-            using (SqlConnection sqlCon = new SqlConnection(connection))
-            {
-                sqlCon.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT Name as Nome, Sex as Sexo FROM Person", sqlCon);
-                sqlDa.Fill(dt);
-
-                ExibePessoasSorteio.DataSource = dt;
-            }
+            PopulatePessoasSorteioTable();
+            
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fillByToolStripButton_Click(object sender, EventArgs e)
+        private void PopulatePessoasSorteioTable()
         {
             try
             {
-                this.personTableAdapter.FillBy(this.databaseDataSet.Person);
+                using (SqlConnection sqlCon = new SqlConnection(connection))
+                {
+                    sqlCon.Open();
+                    SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT Name as Nome, Sex as Sexo FROM Person", sqlCon);
+                    sqlDa.Fill(dt);
+
+                    ExibePessoasSorteio.DataSource = dt;
+                }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro ao recuperar dados do Banco de dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-        }
-
-        private void fillBy1ToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.personTableAdapter.FillBy1(this.databaseDataSet.Person);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
         }
 
@@ -83,8 +58,14 @@ namespace SorteadorDeNomes.Tabs
                 MessageBox.Show("Escolha a quantidade de pessoas a serem sorteadas!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (string.IsNullOrWhiteSpace(JustificationInput.Text))
+            {
+                MessageBox.Show("Preencha o campo de justificativa para sortear!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             else
             {
+                GravaHistorico();
                 ExtraiDadosDaTabela();
                 if (mulheres.Count < (int)Math.Floor(NumPessoasSorteio.Value / 2))
                 {
@@ -97,11 +78,6 @@ namespace SorteadorDeNomes.Tabs
                 PovoaGridComSorteados(pessoasSorteadas);
                 LimpaDados();
             }
-        }
-
-        private void Sorteio_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void ExtraiDadosDaTabela()
@@ -175,6 +151,45 @@ namespace SorteadorDeNomes.Tabs
             pessoasASortear.Clear();
             pessoasSorteadas.Clear();
             mulheres.Clear();
+        }
+        
+        private void GravaHistorico()
+        {
+            try
+            {
+                using (SqlConnection sqlCon = new SqlConnection(connection))
+                {
+                    sqlCon.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO History (Access_id, Justification, DateTime) VALUES (@Access_id, @Justification, @DateTime)", sqlCon);
+                    cmd.Parameters.AddWithValue("@Access_id", userID);
+                    cmd.Parameters.AddWithValue("@Justification", JustificationInput.Text);
+                    cmd.Parameters.AddWithValue("@DateTime", DateTime.Now);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao gravar histórico: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Sorteio_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

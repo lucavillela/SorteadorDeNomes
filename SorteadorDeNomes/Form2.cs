@@ -21,12 +21,6 @@ namespace SorteadorDeNomes
             this.sorteadosTable = sorteadosTable;
         }
 
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void exportButton_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog janelaSave = new SaveFileDialog() { Filter="Excel Workbook|*.xlsx" })
@@ -48,6 +42,10 @@ namespace SorteadorDeNomes
                     }
                 }
             }
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -13,26 +13,10 @@ namespace SorteadorDeNomes
 {
     public partial class login : Form
     {
-        SqlCommand cmd;
         string connection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lucat\source\repos\SorteadorDeNomes\SorteadorDeNomes\Database.mdf;Integrated Security = True";
         public login()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void AccessButton_Click(object sender, EventArgs e)
@@ -40,33 +24,55 @@ namespace SorteadorDeNomes
             string username = InputUser.Text;
             string password = InputPassword.Text;
             string userType = "";
+            int userID = 0;
 
-            using (SqlConnection sqlCon = new SqlConnection(connection))
+            try
             {
-                sqlCon.Open();
-
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*), [type] FROM [dbo].[Access] WHERE [user] = @Username AND [password] = @Password GROUP BY [type]", sqlCon);
-                cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@Password", password);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection sqlCon = new SqlConnection(connection))
                 {
-                    while (reader.Read())
+                    sqlCon.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT Access_id, [type] FROM [dbo].[Access] WHERE [user] = @Username AND [password] = @Password", sqlCon);
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Password", password);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
                     {
-                        userType = reader["type"].ToString();
-                    }
+                        while (reader.Read())
+                        {
+                            userID = Convert.ToInt32(reader["Access_id"]);
+                            userType = reader["type"].ToString();
+                        }
 
-                    main main = new main(userType);
-                    main.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Usuário ou senha incorretos");
+                        main main = new main(userType, userID.ToString());
+                        main.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuário ou senha incorretos");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao conectar com o Banco de Dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

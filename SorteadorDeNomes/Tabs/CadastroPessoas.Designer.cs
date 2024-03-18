@@ -42,6 +42,8 @@
             this.personTableAdapter = new SorteadorDeNomes.DatabaseDataSetTableAdapters.PersonTableAdapter();
             this.label4 = new System.Windows.Forms.Label();
             this.EmailInput = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DeleteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ExibePessoasCadastro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
@@ -112,9 +114,9 @@
             this.CadastrarButton.FlatAppearance.BorderSize = 0;
             this.CadastrarButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CadastrarButton.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CadastrarButton.Location = new System.Drawing.Point(411, 145);
+            this.CadastrarButton.Location = new System.Drawing.Point(400, 145);
             this.CadastrarButton.Name = "CadastrarButton";
-            this.CadastrarButton.Size = new System.Drawing.Size(201, 54);
+            this.CadastrarButton.Size = new System.Drawing.Size(200, 54);
             this.CadastrarButton.TabIndex = 9;
             this.CadastrarButton.Text = "Cadastrar";
             this.CadastrarButton.UseVisualStyleBackColor = false;
@@ -123,11 +125,11 @@
             // ExibePessoasCadastro
             // 
             this.ExibePessoasCadastro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ExibePessoasCadastro.Location = new System.Drawing.Point(32, 222);
+            this.ExibePessoasCadastro.Location = new System.Drawing.Point(32, 223);
             this.ExibePessoasCadastro.Name = "ExibePessoasCadastro";
             this.ExibePessoasCadastro.RowHeadersWidth = 51;
             this.ExibePessoasCadastro.RowTemplate.Height = 24;
-            this.ExibePessoasCadastro.Size = new System.Drawing.Size(619, 228);
+            this.ExibePessoasCadastro.Size = new System.Drawing.Size(619, 562);
             this.ExibePessoasCadastro.TabIndex = 13;
             // 
             // personBindingSource
@@ -164,11 +166,41 @@
             this.EmailInput.Size = new System.Drawing.Size(277, 31);
             this.EmailInput.TabIndex = 14;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Gadugi", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(44, 808);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(389, 20);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Selecione uma linha e clique aqui para removê-la:\r\n";
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteButton.BackColor = System.Drawing.SystemColors.Menu;
+            this.DeleteButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Window;
+            this.DeleteButton.FlatAppearance.BorderSize = 0;
+            this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteButton.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteButton.Location = new System.Drawing.Point(469, 800);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(131, 37);
+            this.DeleteButton.TabIndex = 17;
+            this.DeleteButton.Text = "Excluir";
+            this.DeleteButton.UseVisualStyleBackColor = false;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
             // CadastroPessoas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.Controls.Add(this.DeleteButton);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.EmailInput);
             this.Controls.Add(this.ExibePessoasCadastro);
@@ -179,7 +211,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NomeInput);
             this.Name = "CadastroPessoas";
-            this.Size = new System.Drawing.Size(682, 473);
+            this.Size = new System.Drawing.Size(682, 853);
             ((System.ComponentModel.ISupportInitialize)(this.ExibePessoasCadastro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
@@ -203,5 +235,7 @@
         private DatabaseDataSetTableAdapters.PersonTableAdapter personTableAdapter;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox EmailInput;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }
