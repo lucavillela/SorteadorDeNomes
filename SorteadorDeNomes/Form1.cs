@@ -162,10 +162,6 @@ namespace SorteadorDeNomes
                 row["Sexo"] = pessoa.GetSexo();
                 pessoaTable.Rows.Add(row);
             }
-
-            Form2 form2 = new Form2(dataset);
-            form2.Show();
-            //baseTableGrid.DataSource = dataset.Tables[1];
         }
 
         private void LimpaDados()

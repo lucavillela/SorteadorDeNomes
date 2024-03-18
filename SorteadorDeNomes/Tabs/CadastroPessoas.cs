@@ -21,7 +21,7 @@ namespace SorteadorDeNomes.Tabs
             using (SqlConnection sqlCon = new SqlConnection(connection))
             {
                 sqlCon.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT Name as Nome, Sex as Sexo FROM Person", sqlCon);
+                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT Name as Nome, Sex as Sexo, Email FROM Person", sqlCon);
                 DataTable dt = new DataTable();
                 sqlDa.Fill(dt);
 
@@ -31,21 +31,48 @@ namespace SorteadorDeNomes.Tabs
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(NomeInput.Text) || string.IsNullOrWhiteSpace(SexoComboBox.Text) || string.IsNullOrWhiteSpace(EmailInput.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.");
+                return;
+            }
             using (SqlConnection sqlCon = new SqlConnection(connection))
             {
                 sqlCon.Open();
-                cmd = new SqlCommand("INSERT INTO [dbo].[Person] ([Name], [Sex], [Email]) VALUES ('"+NomeInput.Text.ToString()+ "', '"+SexoComboBox.Text.ToString()+ "', '"+EmailInput.Text.ToString()+"')", sqlCon);
+                string query = "SELECT COUNT(*) FROM [dbo].[Person] WHERE [Name] = @Name AND [Sex] = @Sex AND [Email] = @Email";
+                cmd = new SqlCommand(query, sqlCon);
+                cmd.Parameters.AddWithValue("@Name", NomeInput.Text);
+                cmd.Parameters.AddWithValue("@Sex", SexoComboBox.Text);
+                cmd.Parameters.AddWithValue("@Email", EmailInput.Text);
+                int existingRecordsCount = (int)cmd.ExecuteScalar();
+
+                if (existingRecordsCount > 0)
+                {
+                    MessageBox.Show("Pessoa já cadastrada.");
+                    return;
+                }
+
+                cmd = new SqlCommand("INSERT INTO [dbo].[Person] ([Name], [Sex], [Email]) VALUES (@Name, @Sex, @Email)", sqlCon);
+                cmd.Parameters.AddWithValue("@Name", NomeInput.Text);
+                cmd.Parameters.AddWithValue("@Sex", SexoComboBox.Text);
+                cmd.Parameters.AddWithValue("@Email", EmailInput.Text);
                 cmd.ExecuteNonQuery();
-                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT Name as Nome, Sex as Sexo FROM Person", sqlCon);
+
+                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT Name as Nome, Sex as Sexo, Email FROM Person", sqlCon);
                 DataTable dt = new DataTable();
                 sqlDa.Fill(dt);
 
                 ExibePessoasCadastro.DataSource = dt;
-                MessageBox.Show("Valor inserido");
+                MessageBox.Show("Valor inserido com sucesso.");
             }
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

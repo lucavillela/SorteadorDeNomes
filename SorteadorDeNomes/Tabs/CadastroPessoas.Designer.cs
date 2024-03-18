@@ -51,7 +51,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Gadugi", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(26, 6);
+            this.label2.Location = new System.Drawing.Point(26, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(247, 34);
             this.label2.TabIndex = 3;
@@ -61,17 +61,17 @@
             // 
             this.NomeInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NomeInput.Font = new System.Drawing.Font("Gadugi", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NomeInput.Location = new System.Drawing.Point(32, 78);
+            this.NomeInput.Location = new System.Drawing.Point(32, 102);
             this.NomeInput.Name = "NomeInput";
             this.NomeInput.ShortcutsEnabled = false;
-            this.NomeInput.Size = new System.Drawing.Size(230, 31);
+            this.NomeInput.Size = new System.Drawing.Size(277, 31);
             this.NomeInput.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Gadugi", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(28, 55);
+            this.label1.Location = new System.Drawing.Point(28, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 20);
             this.label1.TabIndex = 10;
@@ -79,25 +79,28 @@
             // 
             // SexoComboBox
             // 
+            this.SexoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SexoComboBox.Font = new System.Drawing.Font("Gadugi", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SexoComboBox.FormattingEnabled = true;
             this.SexoComboBox.Items.AddRange(new object[] {
-            "Masculino",
-            "Feminino"});
-            this.SexoComboBox.Location = new System.Drawing.Point(310, 80);
+            "Feminino",
+            "Masculino"});
+            this.SexoComboBox.Location = new System.Drawing.Point(349, 104);
             this.SexoComboBox.Name = "SexoComboBox";
-            this.SexoComboBox.Size = new System.Drawing.Size(259, 29);
+            this.SexoComboBox.Size = new System.Drawing.Size(302, 29);
+            this.SexoComboBox.Sorted = true;
             this.SexoComboBox.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Gadugi", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(306, 57);
+            this.label3.Location = new System.Drawing.Point(345, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 20);
             this.label3.TabIndex = 12;
             this.label3.Text = "Sexo";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // CadastrarButton
             // 
@@ -109,9 +112,9 @@
             this.CadastrarButton.FlatAppearance.BorderSize = 0;
             this.CadastrarButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CadastrarButton.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CadastrarButton.Location = new System.Drawing.Point(463, 138);
+            this.CadastrarButton.Location = new System.Drawing.Point(411, 145);
             this.CadastrarButton.Name = "CadastrarButton";
-            this.CadastrarButton.Size = new System.Drawing.Size(106, 37);
+            this.CadastrarButton.Size = new System.Drawing.Size(201, 54);
             this.CadastrarButton.TabIndex = 9;
             this.CadastrarButton.Text = "Cadastrar";
             this.CadastrarButton.UseVisualStyleBackColor = false;
@@ -120,11 +123,11 @@
             // ExibePessoasCadastro
             // 
             this.ExibePessoasCadastro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ExibePessoasCadastro.Location = new System.Drawing.Point(32, 199);
+            this.ExibePessoasCadastro.Location = new System.Drawing.Point(32, 222);
             this.ExibePessoasCadastro.Name = "ExibePessoasCadastro";
             this.ExibePessoasCadastro.RowHeadersWidth = 51;
             this.ExibePessoasCadastro.RowTemplate.Height = 24;
-            this.ExibePessoasCadastro.Size = new System.Drawing.Size(537, 198);
+            this.ExibePessoasCadastro.Size = new System.Drawing.Size(619, 228);
             this.ExibePessoasCadastro.TabIndex = 13;
             // 
             // personBindingSource
@@ -145,7 +148,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Gadugi", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 121);
+            this.label4.Location = new System.Drawing.Point(28, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 20);
             this.label4.TabIndex = 15;
@@ -156,9 +159,9 @@
             // 
             this.EmailInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EmailInput.Font = new System.Drawing.Font("Gadugi", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmailInput.Location = new System.Drawing.Point(32, 144);
+            this.EmailInput.Location = new System.Drawing.Point(32, 168);
             this.EmailInput.Name = "EmailInput";
-            this.EmailInput.Size = new System.Drawing.Size(230, 31);
+            this.EmailInput.Size = new System.Drawing.Size(277, 31);
             this.EmailInput.TabIndex = 14;
             // 
             // CadastroPessoas
@@ -176,7 +179,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NomeInput);
             this.Name = "CadastroPessoas";
-            this.Size = new System.Drawing.Size(600, 419);
+            this.Size = new System.Drawing.Size(682, 473);
             ((System.ComponentModel.ISupportInitialize)(this.ExibePessoasCadastro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();

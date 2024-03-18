@@ -13,9 +13,22 @@ namespace SorteadorDeNomes
 {
     public partial class main : Form
     {
-        public main()
+        private string userType;
+
+        public main(string userType)
         {
             InitializeComponent();
+            this.userType = userType;
+
+            if (userType == "admin")
+            {
+                AdminButton.Visible = true;
+            }
+            else if (userType == "op")
+            {
+                AdminButton.Visible = false;
+            }
+
             CadastroPessoas cadastroPessoas = new CadastroPessoas();
             addUserControl(cadastroPessoas);
         }
@@ -31,8 +44,6 @@ namespace SorteadorDeNomes
             panelMain.Controls.Clear();
             panelMain.Controls.Add(userControl);
             userControl.BringToFront();
-            closeButton.BringToFront();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,7 +61,12 @@ namespace SorteadorDeNomes
         private void button3_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
 
+        private void AdminButton_Click(object sender, EventArgs e)
+        {
+            PainelAdmin painelAdmin = new PainelAdmin();
+            addUserControl(painelAdmin);
         }
     }
 }

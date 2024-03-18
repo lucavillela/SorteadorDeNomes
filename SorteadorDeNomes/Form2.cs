@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace SorteadorDeNomes
 {
-    public partial class Form2 : Form
+    public partial class Resultado : Form
     {
-        DataSet dataset;
-        public Form2(DataSet dataset)
+        DataTable sorteadosTable;
+        public Resultado(DataTable sorteadosTable)
         {
             InitializeComponent();
-            resultGrid.DataSource = dataset.Tables[1];
-            this.dataset = dataset;
+            resultGrid.DataSource = sorteadosTable;
+            this.sorteadosTable = sorteadosTable;
         }
 
 
@@ -37,7 +37,7 @@ namespace SorteadorDeNomes
                     {
                         using (XLWorkbook excel = new XLWorkbook())
                         {
-                            excel.Worksheets.Add(dataset.Tables[1], "Resultado_Sorteio");
+                            excel.Worksheets.Add(sorteadosTable, "Resultado_Sorteio");
                             excel.SaveAs(janelaSave.FileName);
                         }
                         MessageBox.Show("Arquivo salvo com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -34,11 +34,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.AccessButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.InputPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -84,7 +84,7 @@
             // 
             this.panel2.Controls.Add(this.AccessButton);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.InputPassword);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.closeButton);
             this.panel2.Controls.Add(this.label2);
@@ -123,15 +123,15 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Senha";
             // 
-            // textBox1
+            // InputPassword
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Gadugi", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(410, 258);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(324, 31);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.UseSystemPasswordChar = true;
+            this.InputPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InputPassword.Font = new System.Drawing.Font("Gadugi", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InputPassword.Location = new System.Drawing.Point(410, 258);
+            this.InputPassword.Name = "InputPassword";
+            this.InputPassword.Size = new System.Drawing.Size(324, 31);
+            this.InputPassword.TabIndex = 6;
+            this.InputPassword.UseSystemPasswordChar = true;
             // 
             // label3
             // 
@@ -154,6 +154,19 @@
             this.panel1.Size = new System.Drawing.Size(354, 450);
             this.panel1.TabIndex = 5;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.Window;
+            this.label5.Location = new System.Drawing.Point(59, 248);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(223, 48);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Sorteador dos membros\r\ndo Conselho de Justiça\r\n";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -167,19 +180,6 @@
             this.label1.Text = "Auditoria Militar \r\ndo Estado da Bahia";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.Window;
-            this.label5.Location = new System.Drawing.Point(59, 248);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(223, 48);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Sorteador dos membros\r\ndo Conselho de Justiça\r\n";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // login
             // 
@@ -211,7 +211,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button AccessButton;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox InputPassword;
         private System.Windows.Forms.Label label5;
     }
 }
